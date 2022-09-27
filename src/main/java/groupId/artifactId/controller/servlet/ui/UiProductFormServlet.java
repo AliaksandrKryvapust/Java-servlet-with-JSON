@@ -1,10 +1,10 @@
 package groupId.artifactId.controller.servlet.ui;
 
-import com.google.gson.Gson;
+import com.google.gson.JsonParseException;
 import groupId.artifactId.service.ProductService;
 import groupId.artifactId.service.api.IProductService;
+import groupId.artifactId.utils.JsonConverter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,12 +15,16 @@ import java.io.IOException;
 @WebServlet(name = "ProductForm", urlPatterns = "/ui/product_form")
 public class UiProductFormServlet extends HttpServlet {
     private final IProductService productService = ProductService.getInstance();
-    private final Gson gson = new Gson();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        req.setAttribute("productData", productService.getById());
-        RequestDispatcher form = req.getRequestDispatcher("/NewProductForm.jsp");
-        form.forward(req, resp);
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+        try {
+            resp.getWriter().write(JsonConverter.toJson(productService.getById()));
+        } catch (JsonParseException e) {
+            throw new ServletException(e);
+        }
     }
 }

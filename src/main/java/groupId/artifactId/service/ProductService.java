@@ -11,14 +11,15 @@ import java.util.List;
 import java.util.Optional;
 
 public class ProductService implements IProductService {
-    private static ProductService firstInstance =null;
+    private static ProductService firstInstance = null;
     private final IProductStorage storage;
     private final ProductValidator validator;
 
-    private ProductService(){
-        this.storage= StorageFactory.getInstance().getProductStorage();
-        this.validator=ProductValidator.getInstance();
+    private ProductService() {
+        this.storage = StorageFactory.getInstance().getProductStorage();
+        this.validator = ProductValidator.getInstance();
     }
+
     public static ProductService getInstance() {
         synchronized (ProductService.class) {
             if (firstInstance == null) {
@@ -40,8 +41,7 @@ public class ProductService implements IProductService {
 
     @Override
     public void add(ProductCreationDto productCreationDto) {
-       this.validator.validate(productCreationDto);
-       this.storage.save(ProductMapper.productMapping(productCreationDto));
+        this.validator.validate(productCreationDto);
+        this.storage.save(ProductMapper.productMapping(productCreationDto));
     }
-
 }
