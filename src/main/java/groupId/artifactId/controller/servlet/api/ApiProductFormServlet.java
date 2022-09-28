@@ -18,7 +18,7 @@ public class ApiProductFormServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         req.setCharacterEncoding("UTF-8");
-        resp.setContentType("text/html; charset=UTF-8");
+        resp.setContentType("application/json");
         String jsonString = req.getReader().lines().collect(Collectors.joining());
         try {
             productService.add(JsonConverter.fromJson(jsonString));
