@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "ProductForm", urlPatterns = "/ui/product_form")
+@WebServlet(name = "ProductForm", urlPatterns = "/ui/product")
 public class UiProductFormServlet extends HttpServlet {
     private final IProductService productService = ProductService.getInstance();
 
@@ -26,5 +26,6 @@ public class UiProductFormServlet extends HttpServlet {
         } catch (JsonParseException e) {
             throw new ServletException(e);
         }
+        resp.setStatus(200);
     }
 }
