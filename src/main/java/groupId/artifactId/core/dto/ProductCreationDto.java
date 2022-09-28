@@ -1,11 +1,15 @@
 package groupId.artifactId.core.dto;
 
 public class ProductCreationDto {
-    private final String name;
-    private final int price;
-    private final int discount;
-    private final String description;
-    ProductCreationDto ( String name, int price, int discount, String description) {
+    private String name;
+    private int price;
+    private int discount;
+    private String description;
+
+    public ProductCreationDto() {
+    }
+
+    public ProductCreationDto (String name, int price, int discount, String description) {
         this.name = name;
         this.price = price;
         this.discount = discount;
