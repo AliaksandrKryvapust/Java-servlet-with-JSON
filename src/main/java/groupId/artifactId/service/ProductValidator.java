@@ -20,7 +20,6 @@ public class ProductValidator implements IProductValidator {
         if (item == null) {
             throw new IllegalStateException("Error code 500. None of Products have been sent as an input");
         }
-
         if (item.getName() == null || item.getName().isBlank()) {
             throw new IllegalArgumentException("Error code 400. Product`s name is not valid");
         }
