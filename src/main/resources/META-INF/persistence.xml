@@ -1,0 +1,20 @@
+<!--<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"-->
+<!--             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+<!--             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence-->
+<!--  http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"-->
+<!--             version="2.1">-->
+<!--&lt;!&ndash;    <persistence-unit name="jbd-pu">&ndash;&gt;-->
+<!--&lt;!&ndash;        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>&ndash;&gt;-->
+<!--&lt;!&ndash;        <properties>&ndash;&gt;-->
+<!--&lt;!&ndash;            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />&ndash;&gt;-->
+<!--&lt;!&ndash;            <property name="javax.persistence.jdbc.url"&ndash;&gt;-->
+<!--&lt;!&ndash;                      value="jdbc:mysql://localhost:3306/jpa_jbd?useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC&amp;useSSL=false" />&ndash;&gt;-->
+<!--&lt;!&ndash;            <property name="javax.persistence.jdbc.user" value="root" />&ndash;&gt;-->
+<!--&lt;!&ndash;            <property name="javax.persistence.jdbc.password"&ndash;&gt;-->
+<!--&lt;!&ndash;                      value="password" />&ndash;&gt;-->
+<!--&lt;!&ndash;            <property name="hibernate.show_sql" value="true" />&ndash;&gt;-->
+<!--&lt;!&ndash;            <property name="hibernate.dialect"&ndash;&gt;-->
+<!--&lt;!&ndash;                      value="org.hibernate.dialect.MySQLInnoDBDialect" />&ndash;&gt;-->
+<!--&lt;!&ndash;        </properties>&ndash;&gt;-->
+<!--&lt;!&ndash;    </persistence-unit>&ndash;&gt;-->
+<!--</persistence>-->

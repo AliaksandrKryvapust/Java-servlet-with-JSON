@@ -7,6 +7,7 @@ import groupId.artifactId.service.api.IProductService;
 import groupId.artifactId.storage.api.StorageFactory;
 import groupId.artifactId.storage.api.IProductStorage;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,7 +31,7 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public List<Product> getById() {
+    public List<Product> getById() throws IOException, ClassNotFoundException {
         return this.storage.get();
     }
 
@@ -40,7 +41,7 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public void add(ProductCreationDto productCreationDto) {
+    public void add(ProductCreationDto productCreationDto) throws IOException {
         this.validator.validate(productCreationDto);
         this.storage.save(ProductMapper.productMapping(productCreationDto));
     }

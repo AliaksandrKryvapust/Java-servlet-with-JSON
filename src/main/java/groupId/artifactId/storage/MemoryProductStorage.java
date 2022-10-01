@@ -5,11 +5,11 @@ import groupId.artifactId.storage.entity.Product;
 
 import java.util.*;
 
-public class ProductStorage implements IProductStorage {
+public class MemoryProductStorage implements IProductStorage {
 
     private final List<Product> productList = new ArrayList<>();
 
-    public ProductStorage() {
+    public MemoryProductStorage() {
 
     }
 
