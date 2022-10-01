@@ -2,10 +2,12 @@ package groupId.artifactId.storage.entity;
 
 public class Product {
     private Integer id;
-    private final String name;
-    private final int price;
-    private final int discount;
-    private final String description;
+    private String name;
+    private int price;
+    private int discount;
+    private String description;
+    Product(){}
+
     Product(String name, int price, int discount, String description) {
         this.name = name;
         this.price = price;

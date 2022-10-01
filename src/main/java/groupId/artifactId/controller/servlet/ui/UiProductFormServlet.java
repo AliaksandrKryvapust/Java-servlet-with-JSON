@@ -18,7 +18,7 @@ public class UiProductFormServlet extends HttpServlet {
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
         try {
-            resp.getWriter().write(JsonConverter.toJson(productService.getById()));
+            resp.getWriter().write(JsonConverter.toJson(productService.get()));
             resp.getWriter().write(System.getenv("CATALINA_HOME"));
         } catch (Exception e) {
             resp.setStatus(500);

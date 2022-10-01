@@ -6,17 +6,19 @@ import groupId.artifactId.storage.entity.Product;
 
 import java.io.*;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class FileProductStorage implements IProductStorage {
     private final String filePath;
     private final ObjectMapper json = new ObjectMapper();
+    private final AtomicInteger id = new AtomicInteger(1);
 
     public FileProductStorage() {
         String path = System.getenv("CATALINA_HOME");
         if (path == null || path.isBlank()) {
             throw new IllegalStateException("Environment variable CATALINA_HOME do not exist");
         }
-        this.filePath = path + File.pathSeparator + "conf" + File.pathSeparator + "products.txt";
+        this.filePath = path + File.separator + "conf" + File.separator + "products.txt";
     }
 
     public FileProductStorage(String filePath) {
@@ -26,7 +28,7 @@ public class FileProductStorage implements IProductStorage {
         } else if (!file.canWrite()) {
             throw new IllegalStateException("There is no write access in this filePath");
         }
-        this.filePath = file.getAbsolutePath() + File.pathSeparator + "products.txt";
+        this.filePath = file.getAbsolutePath() + File.separator + "products.txt";
     }
 
     @Override
@@ -61,7 +63,8 @@ public class FileProductStorage implements IProductStorage {
 
     @Override
     public void save(Product product) {
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filePath))) {
+        product.setId(id.getAndIncrement());
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filePath, true))) {
             bufferedWriter.write(json.writeValueAsString(product));
             bufferedWriter.newLine();
         } catch (IOException e) {

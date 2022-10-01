@@ -31,7 +31,7 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public List<Product> getById() throws IOException, ClassNotFoundException {
+    public List<Product> get() throws IOException, ClassNotFoundException {
         return this.storage.get();
     }
 

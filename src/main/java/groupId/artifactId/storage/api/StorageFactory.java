@@ -6,7 +6,7 @@ import groupId.artifactId.storage.MemoryProductStorage;
 public class StorageFactory implements IStorageFactory {
     private static StorageFactory firstInstance = null;
     private final IProductStorage productStorage;
-    public StorageFactory(){
+    private StorageFactory(){
         this.productStorage= new FileProductStorage();
     }
 
