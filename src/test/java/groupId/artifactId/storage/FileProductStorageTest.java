@@ -24,7 +24,8 @@ public class FileProductStorageTest {
         Product product = ProductBuilder.create().setName("Car").setPrice(18000).setDiscount(2000).
                 setDescription("New").build();
         fileProductStorage.save(product);
-        fileProductStorage.getById(product.getId()).ifPresent(test -> Assertions.assertEquals(product.getId(), test.getId()));
+        fileProductStorage.getById(product.getId()).
+                ifPresent(test -> Assertions.assertEquals(product.getId(), test.getId()));
     }
     @Test
     public void save(){
