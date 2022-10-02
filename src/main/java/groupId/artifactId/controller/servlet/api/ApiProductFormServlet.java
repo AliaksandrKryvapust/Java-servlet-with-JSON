@@ -9,19 +9,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.stream.Collectors;
 
 @WebServlet(name = "ProductFormData", urlPatterns = "/api/product_form")
 public class ApiProductFormServlet extends HttpServlet {
     private final IProductService productService = ProductService.getInstance();
 
     @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+        try {
+            resp.getWriter().write(JsonConverter.toJson(productService.get()));
+        } catch (Exception e) {
+            resp.setStatus(500);
+        }
+        resp.setStatus(200);
+    }
+
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("application/json");
-        String jsonString = req.getReader().lines().collect(Collectors.joining());
         try {
-            productService.add(JsonConverter.fromJson(jsonString));
+            productService.add(JsonConverter.fromJson(req.getInputStream()));
         } catch (Exception e) {
             resp.setStatus(500);
         }
