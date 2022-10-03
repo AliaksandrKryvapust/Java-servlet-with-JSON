@@ -6,7 +6,7 @@ import org.junitpioneer.jupiter.SetEnvironmentVariable;
 
 public class StorageFactoryTest {
 
-////    @Test
+//    @Test
 ////    @SetEnvironmentVariable(key = "CATALINA_HOME", value = "C://")
 //    public void testGetInstance() {
 //        IStorageFactory storageFactory = StorageFactory.getInstance();

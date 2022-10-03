@@ -1,6 +1,10 @@
 package groupId.artifactId.storage;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import groupId.artifactId.exceptions.IncorrectBufferedOperation;
+import groupId.artifactId.exceptions.IncorrectFilePathException;
+import groupId.artifactId.exceptions.IncorrectJsonParseException;
 import groupId.artifactId.storage.api.IProductStorage;
 import groupId.artifactId.storage.entity.Product;
 
@@ -40,8 +44,12 @@ public class FileProductStorage implements IProductStorage {
                 temp.add(json.readValue(line, Product.class));
             }
             return temp;
+        } catch (FileNotFoundException e) {
+            throw new IncorrectFilePathException("Incorrect file path: " + filePath, e);
+        } catch (JsonProcessingException e) {
+            throw new IncorrectJsonParseException("Impossible to parse, line into Product class", e);
         } catch (IOException e) {
-            throw new RuntimeException(e); // change
+            throw new IncorrectBufferedOperation("Impossible to read from a file: " + filePath, e);
         }
     }
 
@@ -56,8 +64,12 @@ public class FileProductStorage implements IProductStorage {
                 }
             }
             return Optional.empty();
+        } catch (FileNotFoundException e) {
+            throw new IncorrectFilePathException("Incorrect file path: " + filePath, e);
+        } catch (JsonProcessingException e) {
+            throw new IncorrectJsonParseException("Impossible to parse, line into Product class", e);
         } catch (IOException e) {
-            throw new RuntimeException(e); // change
+            throw new IncorrectBufferedOperation("Impossible to read from a file: " + filePath, e);
         }
     }
 
@@ -67,8 +79,11 @@ public class FileProductStorage implements IProductStorage {
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filePath, true))) {
             bufferedWriter.write(json.writeValueAsString(product));
             bufferedWriter.newLine();
+        } catch (JsonProcessingException e) {
+            throw new IncorrectJsonParseException("Impossible to parse, Product class into line " +
+                    product, e);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IncorrectBufferedOperation("Impossible to write to a file: " + filePath, e);
         }
     }
 }
